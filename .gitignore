@@ -1,0 +1,42 @@
+build/*
+
+*.d
+*.gch
+*.pch
+
+# Objects
+*.o
+*.obj
+*.slo
+*.lo
+
+# Dynamic libs
+*.so
+*.dylib
+*.dll
+
+# Static libs
+*.a
+*.lib
+*.lai
+*.la
+
+# Executables
+*.exe
+*.out
+*.bin
+*.elf
+*.app
+
+# Visual studio
+Debug
+Release
+*.suo
+*.csproj.user
+*.vbproj.user
+ipch
+*sdf
+.vs
+.vscode/*
+!.vscode/settings.json
+.history
