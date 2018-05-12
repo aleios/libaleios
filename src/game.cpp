@@ -8,11 +8,40 @@
     namespace ae { typedef detail::SDLWindow SystemWindow; }
 #endif
 
+#include "ecs/component.hpp"
+
 namespace ae
 {
     Game::Game()
     {
-        std::shared_ptr<Window> window;
-        window = SystemWindow::Create(this);
+    }
+
+    int Game::Run()
+    {
+        // Close previous window if relevant.
+        if (m_window)
+        {
+            m_window->Cleanup();
+            m_window.reset();
+        }
+
+        // Create window with specified settings.
+        m_window = SystemWindow::Create(this);
+
+        // Main loop
+        while (1)
+        {
+            // Check for inputs.
+            m_window->CheckEvents();
+        }
+
+        // Cleanup resources.
+        if (m_window)
+        {
+            m_window->Cleanup();
+            m_window.reset();
+        }
+
+        return 0;
     }
 }

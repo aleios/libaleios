@@ -3,6 +3,7 @@
 #define AE_DETAIL_DREAMCASTWINDOW_HPP
 
 #include "../window.hpp"
+#include "../memory/ptrutils.hpp"
 
 namespace ae
 {
@@ -13,13 +14,15 @@ namespace ae
         {
         public:
             DreamcastWindow() = default;
+            DreamcastWindow(int width, int height, int bpp);
+
             virtual void CheckEvents() final;    
             virtual void Clear() final;
             virtual void Display() final;
 
-            static std::shared_ptr<Window> Create(Game* game)
+            static std::unique_ptr<Window> Create(Game* game)
             {
-                return std::make_shared<DreamcastWindow>();
+                return ae::make_unique<DreamcastWindow>();
             }
         protected:
             virtual void Init() final;

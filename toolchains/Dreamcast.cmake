@@ -1,9 +1,9 @@
-SET(CMAKE_SYSTEM_NAME Dreamcast)
-SET(DREAMCAST_BUILD TRUE)
+SET(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_VERSION 1)
 
 set(CMAKE_CROSSCOMPILING TRUE)
 
+# Compiler indentification
 set(CMAKE_C_COMPILER "kos-cc")
 set(CMAKE_CXX_COMPILER "kos-c++")
 set(CMAKE_AR "kos-ar" CACHE FILEPATH "Archiver")
@@ -18,11 +18,16 @@ set(CMAKE_SYSTEM_INCLUDE_PATH "$ENV{KOS_BASE}/include")
 SET(CMAKE_EXECUTABLE_SUFFIX ".elf")
 SET(CMAKE_EXECUTABLE_SUFFIX_CXX ".elf")
 
+# KOS Vars
 add_definitions("-DDREAMCAST")
 add_definitions("-D_arch_dreamcast")
 add_definitions("-D_arch_sub_pristine")
 
 # Optimise for size by default
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Os")
+
+# Platform indentification
+set(PLATFORM_DREAMCAST 1)
+add_definitions("-DSYSTEM_DREAMCAST")
 
 link_libraries(m)

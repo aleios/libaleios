@@ -3,6 +3,7 @@
 #define AE_WINDOW_HPP
 
 #include <memory>
+#include <cstdint>
 
 namespace ae
 {
@@ -10,7 +11,11 @@ namespace ae
     class Window
     {
     public:
+        Window() = default;
+        Window(const Window&) = delete;
+        Window& operator=(const Window&) = delete;
         virtual ~Window() = default;
+
         // Input functions
         virtual void CheckEvents() = 0;
 
@@ -20,7 +25,6 @@ namespace ae
 
         void Cleanup();
 
-        Window() = default;
         //Window(int width, int height, int bpp);
     protected:
         // Window management implementations.

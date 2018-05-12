@@ -3,6 +3,7 @@
 #define AE_DETAIL_SDLWINDOW_HPP
 
 #include "../window.hpp"
+#include "../memory/ptrutils.hpp"
 
 struct SDL_Window;
 namespace ae
@@ -14,16 +15,16 @@ namespace ae
         {
         public:
             SDLWindow() = default;
+            SDLWindow(int width, int height, int bpp);
             ~SDLWindow();
 
             virtual void CheckEvents() final;
-
             virtual void Clear() final;
             virtual void Display() final;
 
-            static std::shared_ptr<Window> Create(Game* game)
+            static std::unique_ptr<Window> Create(Game* game)
             {
-                return std::make_shared<SDLWindow>();
+                return ae::make_unique<SDLWindow>();
             }
         protected:
             virtual void Init() final;
@@ -31,6 +32,8 @@ namespace ae
         private:
             SDL_Window* m_window{nullptr};
             void* m_context{nullptr};
+
+            static uint32_t s_numInstances;
         };
     }
 }

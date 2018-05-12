@@ -40,3 +40,4 @@ ipch
 .vscode/*
 !.vscode/settings.json
 .history
+CMakeSettings.json
